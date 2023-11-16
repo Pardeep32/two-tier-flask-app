@@ -99,8 +99,11 @@ ii) Backend container
 docker run -d --name flaskapp  --network=twotier -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=admin -e MYSQL_DB=mydb -p 5000:5000 flaskapp:latest
 ```
 now both are in same network but if delete the container and recreate, data added to database will be lost, so use the concept of volume, delete the mysql conatiner and do the following steps:
-1) docker volume create mysql_data
-2) docker run -d -p 3306:3306 --network=twotier -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=mydb -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin --name=mysql -v mysql_data:/var/lib/mysql mysql:5.7
+
+docker volume create mysql_data
+
+docker run -d -p 3306:3306 --network=twotier -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=mydb -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin --name=mysql -v mysql_data:/var/lib/mysql mysql:5.7
+
 after doing this if you delete docker container any times, data will be persist, no need to recrete message table every time when you delete the mysql conatiner and recreate it.
 
 ## Notes
