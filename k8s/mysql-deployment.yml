@@ -1,5 +1,5 @@
 kind: Deployment
-apiVersion: apps/v1  # Move apiVersion here
+apiVersion: v1  # Move apiVersion here
 metadata:
   name: mysql
   namespace: twotierrr
